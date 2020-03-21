@@ -26,7 +26,7 @@ class ManageProduct extends Component {
     confirmEdit = () => {
         let name = this.editName.value
         let brand = this.editBrand.value
-        let price = this.editPrice.value
+        let price = parseInt(this.editPrice.value)
         let category = this.editCategory.value
         let image = this.editImage.value
 

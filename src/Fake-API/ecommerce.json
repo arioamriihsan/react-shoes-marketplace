@@ -63,12 +63,12 @@
       "image": "http://www.danilorea.it/images/shoes/adidas%20kids-866qnq.jpg"
     },
     {
-      "id": 5,
       "name": "Adidas Runners",
       "brand": "Adidas",
-      "price": 899000,
+      "price": 1300000,
       "category": "Men",
-      "image": "http://www.transfersblog.com/images/shoes/adidas%20runners-169nmt.jpg"
+      "image": "https://images.sportsdirect.com/images/products/11303402_l.jpg",
+      "id": 5
     },
     {
       "id": 6,
