@@ -137,7 +137,7 @@ class Cart extends Component {
 							// console.log(res.data) // Array
 							let date = new Date()
 							let invoice = `INV/${date.getTime()}`
-							let time = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+							let time = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 							let address = this.address.value
 							let courier = this.state.selectedCourier
 							
@@ -152,7 +152,7 @@ class Cart extends Component {
 							}
 							Axios.post(`${API_URL}/transaction`, obj)
 								.then(res => {
-									console.log(res)
+									// console.log(res)
 								})
 								.catch(err => console.log(err))
 							res.data.forEach(val => {
@@ -242,41 +242,41 @@ class Cart extends Component {
 					<tfoot>
 						{
 							this.state.isCheckOut
-								?
-								<tr>
-									<th colSpan='5' style={{ textAlign: 'right' }}>Grand Total</th>
-									<th>Rp {(this.state.grandTotal).toLocaleString()}</th>
-									<th>
-										<div>
-											<Form>
-												<FormGroup row>
-													<Col sm={6}>
-														<Input type="text" name="address" id="address" placeholder="Address" innerRef={(address) => this.address = address} />
-													</Col>
-												</FormGroup>
-												<FormGroup>
-													<Label for="selectCourier">Choose Courier</Label>
-													<div>
-														<CustomInput type='radio' id='gojek' name='courier' label='Gojek' value='Gojek' onChange={this.selectCourier}/>
-														<CustomInput type='radio' id='grab' name='courier' label='Grab' value='Grab' onChange={this.selectCourier}/>
-														<CustomInput type='radio' id='anteraja' name='courier' label='AnterAja' value='Anteraja' onChange={this.selectCourier}/>
-													</div>
-												</FormGroup>
-												<Button color='primary' onClick={this.addToTransaction}><FaShoppingCart/> Buy</Button>
-											</Form>
-										</div>
-									</th>
-								</tr>
-								:
-								<tr>
-									<th colSpan='5' style={{ textAlign: 'right' }}>Grand Total</th>
-									<th>Rp {(this.state.grandTotal).toLocaleString()}</th>
-									<th>
-										<Button color='primary' onClick={this.addToCheckOut}>
-											Check Out
+							?
+							<tr>
+								<th colSpan='5' style={{ textAlign: 'right' }}>Grand Total</th>
+								<th>Rp {(this.state.grandTotal).toLocaleString()}</th>
+								<th>
+									<div>
+										<Form>
+											<FormGroup row>
+												<Col sm={6}>
+													<Input type="text" name="address" id="address" placeholder="Address" innerRef={(address) => this.address = address} />
+												</Col>
+											</FormGroup>
+											<FormGroup>
+												<Label for="selectCourier">Choose Courier</Label>
+												<div>
+													<CustomInput type='radio' id='gojek' name='courier' label='Gojek' value='Gojek' onChange={this.selectCourier}/>
+													<CustomInput type='radio' id='grab' name='courier' label='Grab' value='Grab' onChange={this.selectCourier}/>
+													<CustomInput type='radio' id='anteraja' name='courier' label='AnterAja' value='Anteraja' onChange={this.selectCourier}/>
+												</div>
+											</FormGroup>
+											<Button color='primary' onClick={this.addToTransaction}><FaShoppingCart/> Buy</Button>
+										</Form>
+									</div>
+								</th>
+							</tr>
+							:
+							<tr>
+								<th colSpan='5' style={{ textAlign: 'right' }}>Grand Total</th>
+								<th>Rp {(this.state.grandTotal).toLocaleString()}</th>
+								<th>
+									<Button color='primary' onClick={this.addToCheckOut}>
+										Check Out
 									</Button>
-									</th>
-								</tr>
+								</th>
+							</tr>
 						}
 					</tfoot>
 				</Table>

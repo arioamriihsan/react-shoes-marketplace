@@ -86,7 +86,7 @@ class Transaction extends React.Component {
     render() { 
         if(this.state.data.length === 0 ){
             return(
-                <img className='rounded mx-auto d-block' src='https://i.pinimg.com/236x/1c/ff/d9/1cffd9d30776049fdd0726e97a6c1527---life-minion.jpg'/>
+                <img className='rounded mx-auto d-block' src='https://i.pinimg.com/236x/1c/ff/d9/1cffd9d30776049fdd0726e97a6c1527---life-minion.jpg' alt='Empty Transaction'/>
             )
         }else{
             return ( 

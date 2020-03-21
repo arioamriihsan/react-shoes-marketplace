@@ -57,7 +57,6 @@ class App extends Component {
 				<Route path='/product' component={ProductPage} />
 				<Route path='/product-detail' component={ProductDetail} />
 				<Route path='/transaction' component={Transaction} />
-				<Route path='/transaction' component={Transaction} />
 				<Route path='/manage-products' component={ManageProduct} />
 				<Footer />
 			</React.Fragment>
