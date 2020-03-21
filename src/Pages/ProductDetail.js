@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 
 // API
 import Axios from 'axios'
@@ -100,6 +101,7 @@ class ProductDetail extends Component {
     }
 
     render() { 
+        console.log(this.props.isLogged)
         let { data } = this.state
         return ( 
             <div className='row'>

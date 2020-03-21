@@ -1,5 +1,6 @@
+// main
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 // images
 import JumboImage from '../Assets/exp.jpg'
@@ -7,13 +8,16 @@ import Mencat from '../Assets/$_10.jpg'
 import Womencat from '../Assets/womencat.jpg'
 import Kidscat from '../Assets/kidscat.jpg'
 
+// redux
+import { connect } from 'react-redux'
+
 // icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 // style
 import { Jumbotron, Button } from 'reactstrap';
-import LightSpeed from 'react-reveal/LightSpeed';
+import LightSpeed from 'react-reveal/LightSpeed'
 
 // children
 import CardHome from '../Components/CardHome'
@@ -51,7 +55,7 @@ class Home extends Component {
     }
 
     render() {
-        return (
+        return(
             <React.Fragment>
                 <div>
                     <Jumbotron style={{
@@ -79,11 +83,21 @@ class Home extends Component {
                                     </div>
                                     <div>
                                         <p className="lead">
-                                            <Link to='/product'>
-                                                <Button style={{ backgroundColor: "#1E2535" }}>
-                                                    Shop Now <FontAwesomeIcon icon={faShoppingCart} />
-                                                </Button>
-                                            </Link>
+                                            {
+                                                this.props.logged
+                                                ?
+                                                <Link to='/product'>
+                                                    <Button style={{ backgroundColor: "#1E2535" }} >
+                                                        Shop Now <FontAwesomeIcon icon={faShoppingCart} />
+                                                    </Button>
+                                                </Link>
+                                                :
+                                                <Link to='/login'>
+                                                    <Button style={{ backgroundColor: "#1E2535" }} >
+                                                        Shop Now <FontAwesomeIcon icon={faShoppingCart} />
+                                                    </Button>
+                                                </Link>
+                                            }
                                         </p>
                                     </div>
                                 </LightSpeed>
@@ -102,4 +116,10 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const stateToProps = state => {
+    return{
+        logged: state.auth.logged
+    }
+}
+
+export default connect(stateToProps)(Home);

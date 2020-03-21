@@ -172,7 +172,7 @@ class Cart extends Component {
 				icon: 'error',
 				title: 'Oops...',
 				text: 'Please fill your address and courier'
-		})
+			})
 		}
 	}
 
