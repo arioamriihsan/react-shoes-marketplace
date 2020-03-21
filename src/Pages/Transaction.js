@@ -20,16 +20,14 @@ class Transaction extends React.Component {
         this.fetchData(userId.id)
     }
 
-    fetchData = (userId) => {
+    fetchData = userId => {
         Axios.get(`${API_URL}/transaction?userId=${userId}`)
             .then(res => {
                 this.setState({
                     data: res.data,
                 })
             })
-            .catch(err => {
-                console.log(err)
-            })
+            .catch(err => console.log(err))
     }
 
     renderTransaction = () => {
@@ -52,7 +50,7 @@ class Transaction extends React.Component {
         })
     }
 
-    renderProduct = (product) => {
+    renderProduct = product => {
         return product.map((val, index) => {
             return (
                 <tr key={index}>
@@ -78,9 +76,7 @@ class Transaction extends React.Component {
             `
         })
         innerHtml += `<strong><p>Grand Total: Rp. ${price.toLocaleString()}</p><p>Destination: ${address}</p><p>Courier: ${courier}</p></strong>`
-        Swal.fire({
-            html: innerHtml
-        })
+        Swal.fire({ html: innerHtml })
     }
 
     render() { 

@@ -158,10 +158,8 @@ class Cart extends Component {
 							res.data.forEach(val => {
 								Axios.delete(`${API_URL}/cart/${val.id}`)
 									.then(res => {
-										// console.log(res)
-										this.setState({
-											finishCart: true
-										})
+										console.log(res)
+										this.setState({ finishCart: true })
 									})
 									.catch(err => console.log(err))
 							})
