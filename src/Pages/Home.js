@@ -1,6 +1,6 @@
 // main
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // images
 import JumboImage from '../Assets/exp.jpg'
