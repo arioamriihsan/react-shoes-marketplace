@@ -133,38 +133,38 @@ class Cart extends Component {
 			}).then(result => {
 				if (result.value) {
 					Axios.get(`${API_URL}/cart?userId=${this.props.userId}`)
-						.then(res => {
-							// console.log(res.data) // Array
-							let date = new Date()
-							let invoice = `INV/${date.getTime()}`
-							let time = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-							let address = this.address.value
-							let courier = this.state.selectedCourier
-							
-							let obj = {
-								invoice,
-								date: time,
-								userId: this.props.userId,
-								address,
-								courier,
-								product: res.data,
-								grandTotal: this.state.grandTotal
-							}
-							Axios.post(`${API_URL}/transaction`, obj)
+					.then(res => {
+						// console.log(res.data) // Array
+						let date = new Date()
+						let invoice = `INV/${date.getTime()}`
+						let time = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+						let address = this.address.value
+						let courier = this.state.selectedCourier
+						
+						let obj = {
+							invoice,
+							date: time,
+							userId: this.props.userId,
+							address,
+							courier,
+							product: res.data,
+							grandTotal: this.state.grandTotal
+						}
+						Axios.post(`${API_URL}/transaction`, obj)
+							.then(res => {
+								// console.log(res)
+							})
+							.catch(err => console.log(err))
+						res.data.forEach(val => {
+							Axios.delete(`${API_URL}/cart/${val.id}`)
 								.then(res => {
-									// console.log(res)
+									console.log(res)
+									this.setState({ finishCart: true })
 								})
 								.catch(err => console.log(err))
-							res.data.forEach(val => {
-								Axios.delete(`${API_URL}/cart/${val.id}`)
-									.then(res => {
-										console.log(res)
-										this.setState({ finishCart: true })
-									})
-									.catch(err => console.log(err))
-							})
 						})
-						.catch(err => console.log(err))
+					})
+					.catch(err => console.log(err))
 				}
 			})
 		} else {
