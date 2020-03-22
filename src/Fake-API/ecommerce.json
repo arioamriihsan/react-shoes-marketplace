@@ -79,12 +79,12 @@
       "image": "https://www.famousfootwear.com/ProductImages/shoes_ia90319.jpg?trim.threshold=105&width=600&height=350&paddingWidth=40&anchor=bottomcenter"
     },
     {
-      "id": 7,
       "name": "Nike Z-Kids 2020",
       "brand": "Nike",
       "price": 650000,
       "category": "Kids",
-      "image": "https://www.sepatuindonesia.com/html/images/ImageProduct/21296/Sepatu_anak_perempuan_IBM_640.jpg"
+      "image": "https://www.sepatuindonesia.com/html/images/ImageProduct/21296/Sepatu_anak_perempuan_IBM_640.jpg",
+      "id": 7
     },
     {
       "id": 8,

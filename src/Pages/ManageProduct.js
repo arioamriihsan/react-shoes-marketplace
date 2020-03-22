@@ -24,6 +24,7 @@ class ManageProduct extends Component {
     componentDidMount() {this.fetchData()}
 
     confirmEdit = () => {
+        // console.log(this)
         let name = this.editName.value
         let brand = this.editBrand.value
         let price = parseInt(this.editPrice.value)
@@ -31,16 +32,14 @@ class ManageProduct extends Component {
         let image = this.editImage.value
 
         Axios.put(`${API_URL}/products/${this.state.selectedId}`, {name, brand, price, category, image})
-        .then((res) => {
+        .then(res => {
             console.log(res)
             this.setState({
                 selectedId : null
             })
             this.fetchData()
         })
-        .catch((err) => {
-            console.log(err)
-        })
+        .catch(err => console.log(err))
     }
 
     deleteData = (id, image) => {
@@ -53,10 +52,10 @@ class ManageProduct extends Component {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
+        }).then(result => {
             if (result.value) {
                 Axios.delete(`${API_URL}/products/${id}`)
-                .then((res) => {
+                .then(res => {
                     console.log(res)
                     this.fetchData()
                     Swal.fire(
@@ -70,10 +69,11 @@ class ManageProduct extends Component {
     }
 
     renderProduct = () => {
-        return this.state.data.map((val) => {
+        // console.log(this.state.data)
+        return this.state.data.map(val => {
             if( val.id === this.state.selectedId ) {
                 return(
-                    <tr>
+                    <tr key={val.id}>
                         <td>{val.id}</td>
                         <td>
                             <Input defaultValue={val.name} innerRef={(editName => this.editName = editName)}/>
@@ -104,7 +104,7 @@ class ManageProduct extends Component {
                 )
             }
             return(
-                <tr>
+                <tr key={val.id}>
                     <td>{val.id}</td>
                     <td>{val.name}</td>
                     <td>{val.brand}</td>
@@ -122,11 +122,7 @@ class ManageProduct extends Component {
         })
     }
 
-    selectEdit = (id) => {
-        this.setState({
-            selectedId : id
-        })
-    }
+    selectEdit = id => this.setState({ selectedId : id })
 
     addProduct = () => {
         let name = this.name.value
@@ -144,7 +140,7 @@ class ManageProduct extends Component {
         }
 
         Axios.post(`${API_URL}/products`, productData)
-        .then((res) => {
+        .then(res => {
             console.log(res.data)
             {this.fetchData()}
         })
