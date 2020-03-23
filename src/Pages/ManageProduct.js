@@ -142,7 +142,7 @@ class ManageProduct extends Component {
         Axios.post(`${API_URL}/products`, productData)
         .then(res => {
             console.log(res.data)
-            {this.fetchData()}
+            this.fetchData()
         })
         .catch(err => console.log(err))
 

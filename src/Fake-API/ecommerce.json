@@ -96,5 +96,29 @@
     }
   ],
   "cart": [],
-  "transaction": []
+  "transaction": [
+    {
+      "invoice": "INV/1584941779524",
+      "date": "23/3/2020, 12:36:19",
+      "userId": 1,
+      "address": "Banjar",
+      "courier": "Gojek",
+      "product": [
+        {
+          "name": "Jordan 7 Retro Barcelona Nights",
+          "idProduct": 1,
+          "price": 1350000,
+          "image": "https://d38t85204sb0x0.cloudfront.net/eyJidWNrZXQiOiJraWNrYXZlbnVlLWFzc2V0cyIsImtleSI6InByb2R1Y3RzLzQxMS84NDczZmQwZi1hNTEwLTQxYTMtOTlhYS05NTgyMDg1NjNmNjAuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6NTAwfX19",
+          "category": "Men",
+          "brand": "Jordan",
+          "size": 40,
+          "userId": 1,
+          "count": 1,
+          "id": 1
+        }
+      ],
+      "grandTotal": 1350000,
+      "id": 1
+    }
+  ]
 }

@@ -50,20 +50,6 @@ class Transaction extends React.Component {
         })
     }
 
-    renderProduct = product => {
-        return product.map((val, index) => {
-            return (
-                <tr key={index}>
-                    <td>{val.name}</td>
-                    <td><img width='20%' src={val.image} alt='foto'/></td>
-                    <td>Size: {val.size}</td>
-                    <td>Jumlah: {`${val.count} (@ Rp.${val.price.toLocaleString()})`}</td>
-                    <td>Rp. {(val.price * val.count).toLocaleString()}</td>
-                </tr>
-            )
-        })
-    }
-
     showDetail = (product, price, time, inv, courier, address) => {
         let innerHtml = `<strong><p>${inv}</p><p>${time}</p></strong><hr />`
         product.forEach(val => {
