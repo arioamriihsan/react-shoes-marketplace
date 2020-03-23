@@ -36,11 +36,12 @@ class Transaction extends React.Component {
                 <React.Fragment key={val.id}>
                     <tr className="table-secondary" key={val.id}>
                         <td colSpan='4'>{val.date}</td>
+                        <td colSpan='4'>{val.time}</td>
                         <td colSpan='4'>{val.invoice}</td>
                         <td colSpan='4'>{val.address}</td>
                         <td>Rp. {val.grandTotal.toLocaleString()}</td>
                         <td>
-                            <Button className='rounded mx-auto d-block' color='success' onClick={() => this.showDetail(val.product, val.grandTotal, val.date, val.invoice, val.courier, val.address)}>
+                            <Button className='rounded mx-auto d-block' color='success' onClick={() => this.showDetail(val.product, val.grandTotal, val.date, val.time, val.invoice, val.courier, val.address)}>
                                 Click For Details ({val.product.length} {val.product.length > 1 ? 'items' : 'item'})
                             </Button>
                         </td>
@@ -50,8 +51,8 @@ class Transaction extends React.Component {
         })
     }
 
-    showDetail = (product, price, time, inv, courier, address) => {
-        let innerHtml = `<strong><p>${inv}</p><p>${time}</p></strong><hr />`
+    showDetail = (product, price, date, time, inv, courier, address) => {
+        let innerHtml = `<strong><p>${inv}</p><p>${date}, ${time}</p></strong><hr />`
         product.forEach(val => {
             innerHtml += `<img width='30%' src='${val.image}' alt='foto'/>
             <h5>${val.name}</h5>
@@ -76,6 +77,7 @@ class Transaction extends React.Component {
                     <Table style={{'width': '75%', 'marginLeft': 'auto', 'marginRight': 'auto'}}>
                         <thead>
                             <tr>
+                                <th colSpan='4'>Date</th>
                                 <th colSpan='4'>Time</th>
                                 <th colSpan='4'>Invoice</th>
                                 <th colSpan='4'>Destination</th>

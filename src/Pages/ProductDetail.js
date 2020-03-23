@@ -101,7 +101,7 @@ class ProductDetail extends Component {
     }
 
     render() { 
-        console.log(this.props.isLogged)
+        // console.log(this.props.isLogged)
         let { data } = this.state
         return ( 
             <div className='row'>

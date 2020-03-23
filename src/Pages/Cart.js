@@ -135,15 +135,17 @@ class Cart extends Component {
 					Axios.get(`${API_URL}/cart?userId=${this.props.userId}`)
 					.then(res => {
 						// console.log(res.data) // Array
-						let date = new Date()
-						let invoice = `INV/${date.getTime()}`
-						let time = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+						let times = new Date()
+						let invoice = `INV/${times.getTime()}`
+						let date = `${((times.getDate()<10?'0':'') + times.getDate())}/${((times.getMonth()+1)<10?'0':'') + (times.getMonth()+1)}/${times.getFullYear()}`
+						let time = `${((times.getHours()<10?'0':'') + times.getHours())}:${((times.getMinutes()<10?'0':'') + times.getMinutes())}:${((times.getSeconds()<10?'0':'') + times.getSeconds())} WIB`
 						let address = this.address.value
 						let courier = this.state.selectedCourier
 						
 						let obj = {
 							invoice,
-							date: time,
+							date,
+							time,
 							userId: this.props.userId,
 							address,
 							courier,
