@@ -13,7 +13,7 @@ import Transaction from './Pages/Transaction';
 import Footer from './Components/Footer'
 import ManageProduct from './Pages/ManageProduct';
 import NoMatch from './Pages/NoMatch'
-// import ProductMen from './Pages/ProductMen';
+import Profile from './Pages/Profile';
 
 // API
 import Axios from 'axios'
@@ -49,7 +49,9 @@ class App extends Component {
 	}
 
 	render() {
+		// console.log(this.props.role)
 		return (
+			// <div>test</div>
 			<React.Fragment>
 				<Header />
 				<Switch>
@@ -57,11 +59,17 @@ class App extends Component {
 					<Route path='/login' component={LoginPage} />
 					<Route path='/register' component={Register} />
 					<Route path='/my-cart' component={Cart} />
-					<Route path='/product' component={ProductPage} exact />
-					{/* <Route path='/product/men' component={ProductMen} /> */}
+					<Route path='/product' component={ProductPage}/>
 					<Route path='/product-detail' component={ProductDetail} />
 					<Route path='/transaction' component={Transaction} />
-					<Route path='/manage-products' component={ManageProduct} />
+					{
+						this.props.role === 'admin'
+						?
+						<Route path='/manage-products' component={ManageProduct} />
+						:
+						<Route component={NoMatch}/>
+					}
+					<Route path='/profile' component={Profile} />
 					<Route component={NoMatch}/>
 				</Switch>
 				<Footer />
@@ -70,4 +78,10 @@ class App extends Component {
 	}
 }
 
-export default connect(null, { Login })(App);
+const stateToProps = state => {
+	return{
+		role: state.auth.role
+	}
+}
+
+export default connect(stateToProps, { Login })(App);

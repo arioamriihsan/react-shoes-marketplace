@@ -23,8 +23,10 @@ class Register extends Component {
         let email = this.email.value
         let password = this.password.value
         let confirmPass = this.confirmPass.value
+        let checkPass = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/
 
-        if(password === confirmPass) {
+        // console.log(password.length)
+        if (password.match(checkPass) && password === confirmPass) {
             Axios.get(`${API_URL}/users?username=${username}`)
             .then((res) => {
                 if(res.data.length > 0) {
@@ -59,13 +61,23 @@ class Register extends Component {
                 }
             })
             .catch(err => console.log(err))
-        } else {
+        } else if (!password.match(checkPass) && password === confirmPass) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'password harus mengandung lebih dari 8 karakter, harus mengandung angka, dan symbol '
+            })
+        }
+        else {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Invalid Password'
             })
         }
+
+        // if(password === confirmPass) {
+        // }
     }
 
     render() { 

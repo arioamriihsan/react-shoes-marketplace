@@ -70,7 +70,7 @@ const Header = (props) => {
 									<Link to='/transaction'>
 										<DropdownItem>Transaction</DropdownItem>
 									</Link>
-									<Link to=''>
+									<Link to='/profile'>
 										<DropdownItem>Profile</DropdownItem>
 									</Link>
 									{

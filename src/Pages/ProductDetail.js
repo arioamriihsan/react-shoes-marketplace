@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 
 // style
 import Select from 'react-select'
-import { Button } from 'reactstrap'
+import { Button, Label } from 'reactstrap'
 import Swal from 'sweetalert2'
 
 class ProductDetail extends Component {
@@ -28,7 +28,15 @@ class ProductDetail extends Component {
             {value: 48, label: 48},
         ],
         selectedSize: false,
-        sizeValue: 0
+        sizeValue: 0,
+        quantity: [
+            {value: 1, label: 1},
+            {value: 2, label: 2},
+            {value: 3, label: 3},
+            {value: 4, label: 4},
+            {value: 5, label: 5}
+        ],
+        qtyValue: 0
     }
 
     componentDidMount = () => {
@@ -56,6 +64,15 @@ class ProductDetail extends Component {
         }
     }
 
+    selectedQuantity = qty => {
+        // console.log(qty)
+        let quantity = qty.value
+        // console.log(quantity)
+        if(quantity !== 0) {
+            this.setState({ qtyValue : quantity })
+        }
+    }
+
     handleCart = () => {
         if (this.state.selectedSize) {
             Swal.fire({
@@ -75,7 +92,7 @@ class ProductDetail extends Component {
                 brand,
                 size: this.state.sizeValue,
                 userId: this.props.userId,
-                count: 1
+                count: this.state.qtyValue
             }
             // console.log(addToCart)
             Axios.get(`${API_URL}/cart?userId=${addToCart.userId}&size=${addToCart.size}&idProduct=${addToCart.idProduct}`)
@@ -87,7 +104,7 @@ class ProductDetail extends Component {
                     // .catch(err => console.log(err))
                 } else {
                     Axios.post(`${API_URL}/cart`, addToCart)
-                    // .then(res => console.log(res))
+                    .then(res => console.log(res))
                     // .catch(err => console.log(err))
                 }
             })
@@ -101,7 +118,7 @@ class ProductDetail extends Component {
     }
 
     render() { 
-        // console.log(this.props.isLogged)
+        console.log(this.state.qtyValue)
         let { data } = this.state
         return ( 
             <div className='row'>
@@ -123,7 +140,12 @@ class ProductDetail extends Component {
                         }
                     </div>
                     <div>
+                       <p style={{marginBottom: '-16px'}}>Size</p>
                         <Select className='mt-3' options={this.state.sizes} onChange={this.selectedSize}/>
+                    </div>
+                    <div>
+                       <p style={{marginBottom: '-16px'}}>Quantity</p>
+                        <Select className='mt-3' options={this.state.quantity} onChange={this.selectedQuantity}/>
                     </div>
                     <div>
                         <Button className='mt-3' color='primary' onClick={() => this.handleCart(this.selectedSize)}>Add To Cart</Button>
