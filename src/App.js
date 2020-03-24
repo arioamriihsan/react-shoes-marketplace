@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 // children
 import Header from './Components/Header'
@@ -12,6 +12,8 @@ import ProductDetail from './Pages/ProductDetail'
 import Transaction from './Pages/Transaction';
 import Footer from './Components/Footer'
 import ManageProduct from './Pages/ManageProduct';
+import NoMatch from './Pages/NoMatch'
+// import ProductMen from './Pages/ProductMen';
 
 // API
 import Axios from 'axios'
@@ -50,14 +52,18 @@ class App extends Component {
 		return (
 			<React.Fragment>
 				<Header />
-				<Route path='/' component={Home} exact />
-				<Route path='/login' component={LoginPage} />
-				<Route path='/register' component={Register} />
-				<Route path='/my-cart' component={Cart} />
-				<Route path='/product' component={ProductPage} />
-				<Route path='/product-detail' component={ProductDetail} />
-				<Route path='/transaction' component={Transaction} />
-				<Route path='/manage-products' component={ManageProduct} />
+				<Switch>
+					<Route path='/' component={Home} exact />
+					<Route path='/login' component={LoginPage} />
+					<Route path='/register' component={Register} />
+					<Route path='/my-cart' component={Cart} />
+					<Route path='/product' component={ProductPage} exact />
+					{/* <Route path='/product/men' component={ProductMen} /> */}
+					<Route path='/product-detail' component={ProductDetail} />
+					<Route path='/transaction' component={Transaction} />
+					<Route path='/manage-products' component={ManageProduct} />
+					<Route component={NoMatch}/>
+				</Switch>
 				<Footer />
 			</React.Fragment>
 		);
