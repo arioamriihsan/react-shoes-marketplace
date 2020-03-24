@@ -62,6 +62,7 @@ class App extends Component {
 					<Route path='/product' component={ProductPage}/>
 					<Route path='/product-detail' component={ProductDetail} />
 					<Route path='/transaction' component={Transaction} />
+					<Route path='/profile' component={Profile} />
 					{
 						this.props.role === 'admin'
 						?
@@ -69,7 +70,6 @@ class App extends Component {
 						:
 						<Route component={NoMatch}/>
 					}
-					<Route path='/profile' component={Profile} />
 					<Route component={NoMatch}/>
 				</Switch>
 				<Footer />

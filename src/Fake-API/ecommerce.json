@@ -3,7 +3,7 @@
     {
       "id": 1,
       "username": "arioamri",
-      "password": "1234",
+      "password": "123",
       "email": "arioamri@gmail.com",
       "role": "user"
     },
@@ -110,5 +110,30 @@
     }
   ],
   "cart": [],
-  "transaction": []
+  "transaction": [
+    {
+      "invoice": "INV/1585048830450",
+      "date": "24/03/2020",
+      "time": "18:20:30 WIB",
+      "userId": 2,
+      "address": "Purwadhika",
+      "courier": "Gojek",
+      "product": [
+        {
+          "name": "Nike Z-Kids 2020",
+          "idProduct": 7,
+          "price": 650000,
+          "image": "https://www.sepatuindonesia.com/html/images/ImageProduct/21296/Sepatu_anak_perempuan_IBM_640.jpg",
+          "category": "Kids",
+          "brand": "Nike",
+          "size": 41,
+          "userId": 2,
+          "count": 6,
+          "id": 1
+        }
+      ],
+      "grandTotal": 3900000,
+      "id": 1
+    }
+  ]
 }
